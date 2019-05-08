@@ -47,7 +47,7 @@ def download_files(msg):
         itchat.send('@%s@%s' % ('img' if msg['Type'] == 'Picture' else 'fil', fileDir), robot)
 
 
-@itchat.msg_register(TEXT,isMpChat=True)
+@itchat.msg_register(TEXT,isMpChat=True,isGroupChat=True)
 def text_reply(msg):
     # noinspection PyBroadException
     try:
@@ -56,6 +56,7 @@ def text_reply(msg):
         robot = getRobotInfo()
         me = getMeInfo()
         content = msg.Content
+        print(msg)
         #msg.user.send('%s: %s' % (msg.type, msg.text))
         # 来自robot的回复,获取回复，将信息发送给用户
         if fromUser == robot and len(config.waitList) > 0:
